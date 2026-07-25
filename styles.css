@@ -47,6 +47,11 @@ h1 em,h2 em{font-style:normal;color:var(--green)}
 .button:hover{background:var(--green-soft);transform:translateY(-2px)}
 .button span{font-size:20px;line-height:10px}
 .button-small{padding:12px 16px}
+.button-lg{padding:19px 28px;font-size:12px}
+.button-outline{background:rgba(255,255,255,.04);color:#fff;border:1px solid #333;
+  backdrop-filter:blur(4px);gap:10px}
+.button-outline:hover{background:rgba(255,255,255,.09);color:#fff;transform:translateY(-2px)}
+.btn-icon{width:17px;height:17px;flex-shrink:0}
 
 .text-link{
   color:#f5f5f5;text-decoration:none;text-transform:uppercase;
@@ -76,41 +81,70 @@ h1 em,h2 em{font-style:normal;color:var(--green)}
 
 /* 3) HERO ----------------------------------------------------------------- */
 .hero{
-  min-height:88vh;padding:120px 11vw 80px;position:relative;overflow:hidden;
-  display:grid;grid-template-columns:1.2fr .8fr;align-items:center;
-  background:radial-gradient(circle at 78% 40%,#273300 0,#111 26%,#090909 57%);
+  min-height:92vh;padding:150px 11vw 80px;position:relative;overflow:hidden;
+  display:grid;align-items:center;background:var(--ink);
 }
-.hero-lines{position:absolute;inset:0;pointer-events:none;   /* nunca bloqueia clique */
-  background:repeating-linear-gradient(116deg,transparent 0,transparent 105px,rgba(185,255,24,.12) 106px,transparent 108px)}
-.hero-content{position:relative;z-index:2}
-.hero-text{max-width:420px;color:#c3c3c3;line-height:1.7;font-size:14px;margin:27px 0}
-.hero-actions{display:flex;align-items:center;gap:28px;flex-wrap:wrap;position:relative;z-index:2}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:78% center}
+.hero-bg-overlay{position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,var(--ink) 0%,rgba(10,10,10,.9) 34%,rgba(10,10,10,.35) 66%,rgba(10,10,10,.08) 100%),
+    linear-gradient(0deg,var(--ink) 0%,transparent 16%,transparent 84%,rgba(10,10,10,.75) 100%)}
+.hero-content{position:relative;z-index:2;max-width:640px}
+.hero-text{max-width:440px;color:#c3c3c3;line-height:1.7;font-size:14px;margin:22px 0 0}
+.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:relative;z-index:2;margin-top:28px}
+.hero-disclaimer{color:#8f8f8f;font-size:12px;margin:14px 0 0}
 
-.hero-visual{position:relative;z-index:1;display:grid;place-items:center;height:440px}
-.hero-logo{width:100%;max-width:460px;height:auto}
-.logo-mark{fill:none;stroke:var(--green);stroke-linecap:round}
-.logo-word{fill:#fff;font:800 italic 62px 'Barlow Condensed',Impact,sans-serif;letter-spacing:1px}
-.logo-rule{fill:var(--green)}
-.logo-caption{fill:#a0a0a0;font:700 15px 'Manrope',sans-serif;letter-spacing:3px}
-@media(max-width:760px){
-  .hero-logo{max-width:280px}
-}
-.hero-number{position:absolute;right:0;top:5px;font:700 15px 'Barlow Condensed';color:var(--green);letter-spacing:2px}
-.scroll-note{position:absolute;bottom:24px;left:6vw;font-size:9px;font-weight:700;letter-spacing:1.5px;color:#aaa}
-.scroll-note span{width:70px;height:1px;background:#777;display:inline-block;vertical-align:middle;margin-left:10px}
+.badge-pill{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(185,255,24,.4);
+  background:rgba(185,255,24,.08);color:var(--green);padding:9px 16px;border-radius:999px;
+  font-size:11px;font-weight:800;letter-spacing:1.1px;margin-bottom:22px}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;
+  animation:badge-pulse 2s ease-in-out infinite}
+@keyframes badge-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+.hero-stats{display:flex;flex-wrap:wrap;gap:26px 34px;margin-top:40px;position:relative;z-index:2}
+.hero-stat{border-left:2px solid rgba(185,255,24,.6);padding-left:12px}
+.hero-stat span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#999;margin-bottom:4px}
+.hero-stat b{font:800 22px 'Barlow Condensed',sans-serif}
+
+/* 3b) FAIXA DE ESTATÍSTICAS ------------------------------------------------ */
+.stats-strip{border-bottom:1px solid var(--line);background:#0f0f0f;padding:36px var(--pad-x)}
+.stats-strip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.stat-chip{display:flex;align-items:center;gap:14px}
+.stat-icon{width:46px;height:46px;border-radius:8px;background:rgba(185,255,24,.1);
+  border:1px solid rgba(185,255,24,.3);display:grid;place-items:center;color:var(--green);flex-shrink:0}
+.stat-icon svg{width:22px;height:22px}
+.stat-chip div b{display:block;font:800 26px 'Barlow Condensed',sans-serif;line-height:1}
+.stat-chip div span{font-size:11px;color:#999;letter-spacing:.3px}
 
 /* 4) A ACADEMIA ----------------------------------------------------------- */
 .intro{
   padding:92px var(--pad-x);border-bottom:1px solid var(--line);
   display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.86fr);
-  grid-template-areas:"label label" "headline video" "copy video";
+  grid-template-areas:"label label" "headline video" "copy video" "tags video";
   column-gap:74px;row-gap:22px;
 }
 .section-label{grid-area:label;color:#8d8d8d;font:600 12px 'Barlow Condensed';letter-spacing:1px}
 .intro-headline{grid-area:headline}
 .intro-copy{grid-area:copy;max-width:470px;font-size:14px;color:#c4c4c4;line-height:1.9;margin:0;align-self:start}
-.intro-video{grid-area:video;align-self:start;justify-self:end;width:100%;max-width:500px}
-.intro-video .instagram-media{margin:0 auto!important;max-width:500px!important;min-width:0!important;width:100%!important}
+.intro-tags{grid-area:tags;display:flex;flex-wrap:wrap;gap:10px;align-self:start;margin-top:6px}
+.tag-pill{display:inline-flex;align-items:center;border:1px solid var(--line);background:#151515;
+  color:#ddd;padding:8px 16px;border-radius:999px;font-size:12px}
+.intro-video{grid-area:video;align-self:start;justify-self:end;width:100%;max-width:560px}
+.intro-video video{width:100%;height:auto;display:block;border:1px solid var(--line);background:#000}
+
+/* 4b) PARA QUEM É ----------------------------------------------------------- */
+.audience{padding:100px var(--pad-x);background:#0d0d0d;border-top:1px solid var(--line)}
+.audience-head{max-width:640px;margin:0 0 48px}
+.audience-intro{color:#bdbdbd;font-size:14px;line-height:1.8;margin:18px 0 0}
+.audience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.audience-card{border:1px solid var(--line);border-radius:10px;background:#151515;padding:26px;transition:.2s}
+.audience-card:hover{border-color:rgba(185,255,24,.5);transform:translateY(-4px)}
+.audience-icon{width:44px;height:44px;border-radius:8px;background:rgba(185,255,24,.1);
+  border:1px solid rgba(185,255,24,.3);display:grid;place-items:center;margin-bottom:16px;color:var(--green)}
+.audience-icon svg{width:20px;height:20px}
+.audience-card h3{font-size:22px;margin-bottom:6px;letter-spacing:.3px}
+.audience-card p{color:#a8a8a8;font-size:13px;line-height:1.6;margin:0}
 
 /* 5) TREINOS -------------------------------------------------------------- */
 .training{background:#151515;padding:100px var(--pad-x)}
@@ -141,14 +175,22 @@ h1 em,h2 em{font-style:normal;color:var(--green)}
 .laysson-copy{grid-area:profile;align-self:start}
 .laysson-video{grid-area:video}
 
+.laysson-collage{position:relative}
 .laysson-photo{width:100%;height:300px;object-fit:cover;object-position:center 25%;
-  margin:0 0 24px;border:1px solid #3a3a3a;filter:contrast(1.05) saturate(.9)}
+  margin:0;border:1px solid #3a3a3a;filter:contrast(1.05) saturate(.9)}
+.laysson-badge{position:absolute;right:0;bottom:22px;transform:translateX(18%);
+  background:var(--green);color:#0c0c0c;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.laysson-badge b{font:800 30px 'Barlow Condensed',sans-serif;line-height:1}
+.laysson-badge span{font-size:10px;font-weight:700;line-height:1.2}
+.laysson-title{margin-top:24px}
+
 .laysson-copy>p{color:#bdbdbd;font-size:14px;line-height:1.85;margin:0 0 19px;max-width:640px}
 
-.achievements{display:flex;flex-wrap:wrap;gap:12px 30px;margin:6px 0 4px}
-.achievement{display:inline-flex;align-items:center;gap:12px;color:#fff;
-  font:700 11px/1.15 'Barlow Condensed',sans-serif;letter-spacing:.7px}
-.achievement b{font:800 42px 'Barlow Condensed',sans-serif;color:var(--green)}
+.check-list{list-style:none;padding:0;margin:22px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:11px 20px}
+.check-list li{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:#ddd}
+.check-list li svg{width:16px;height:16px;color:var(--green);flex-shrink:0;margin-top:2px}
+.icon-inline{width:15px;height:15px;margin-right:6px}
+.laysson-links .text-link{display:inline-flex;align-items:center}
 
 .fighter-profile{margin:26px 0 0;border-top:1px solid #3a3a3a}
 .fighter-profile>p{margin:17px 0 7px;color:var(--green);font-size:10px;font-weight:800;letter-spacing:1.3px}
@@ -158,7 +200,34 @@ h1 em,h2 em{font-style:normal;color:var(--green)}
 .fighter-profile b{font-size:11px;text-align:right;color:#f2f2f2}
 
 .laysson-links{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:22px}
-.laysson-video .instagram-media{margin:0 auto!important;max-width:420px!important;min-width:0!important;width:100%!important}
+.laysson-video{max-width:320px}
+.laysson-video video{width:100%;height:auto;display:block;border:1px solid var(--line);background:#000}
+
+/* 6b) BENEFÍCIOS ------------------------------------------------------------ */
+.benefits{padding:100px var(--pad-x);background:#151515}
+.benefits-head{max-width:640px;margin:0 0 48px}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.benefit-cell{background:#0d0d0d;padding:32px 28px;transition:.2s}
+.benefit-cell:hover{background:#161616}
+.benefit-index{font:800 34px 'Barlow Condensed',sans-serif;color:rgba(185,255,24,.6)}
+.benefit-cell h3{font-size:20px;margin:14px 0 8px;letter-spacing:.3px;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif}
+.benefit-cell p{color:#aaa;font-size:13px;line-height:1.6;margin:0}
+
+/* 6c) AVALIAÇÕES ------------------------------------------------------------ */
+.reviews{padding:100px var(--pad-x);background:#0d0d0d;border-top:1px solid var(--line);
+  display:grid;grid-template-columns:.85fr 1.15fr;gap:50px;align-items:start}
+.reviews-card{background:#151515;border:1px solid var(--line);border-radius:10px;
+  padding:24px 28px;text-align:center;margin-top:28px;max-width:280px}
+.reviews-score{display:flex;align-items:baseline;justify-content:center;gap:12px}
+.reviews-score b{font:800 42px 'Barlow Condensed',sans-serif;color:var(--green)}
+.reviews-stars{color:var(--green);font-size:16px;letter-spacing:2px}
+.reviews-card>p{color:#aaa;font-size:13px;margin:6px 0 14px}
+
+.reviews-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.review-cell{background:#151515;border:1px solid var(--line);border-radius:10px;padding:24px}
+.review-stars{color:var(--green);font-size:15px;letter-spacing:2px;margin-bottom:12px}
+.review-cell p{color:#dcdcdc;font-size:14px;line-height:1.6;margin:0 0 14px}
+.review-cell span{color:#888;font-size:12px}
 
 /* 7) HORÁRIOS ------------------------------------------------------------- */
 .schedule{padding:100px var(--pad-x)}
@@ -170,14 +239,30 @@ h1 em,h2 em{font-style:normal;color:var(--green)}
 .schedule-grid span{color:#aaa;text-align:right}
 
 /* 8) CURSO ---------------------------------------------------------------- */
-.course{background:#202020;padding:100px var(--pad-x);
-  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.course-copy{max-width:480px;justify-self:end}
-.course-copy p{color:#c0c0c0;font-size:14px;line-height:1.8;margin:0 0 20px}
-.course-list{list-style:none;padding:0;margin:0 0 28px}
-.course-list li{position:relative;padding:8px 0 8px 26px;color:#d5d5d5;font-size:13px;
-  line-height:1.5;border-bottom:1px solid #2c2c2c}
-.course-list li::before{content:"→";position:absolute;left:0;color:var(--green);font-weight:800}
+.course{padding:100px var(--pad-x);background:#151515}
+.course-card{display:grid;grid-template-columns:1fr 1fr;background:#0d0d0d;
+  border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.course-info{padding:56px}
+.course-discount{display:inline-block;background:var(--green);color:#0c0c0c;font:800 11px 'Barlow Condensed',sans-serif;
+  letter-spacing:1px;padding:6px 14px;border-radius:999px;margin-bottom:22px}
+.course-info h2{font-size:clamp(34px,3.4vw,44px)}
+.course-info>p{color:#bdbdbd;font-size:14px;line-height:1.75;margin:20px 0 0;max-width:420px}
+
+.course-list{list-style:none;padding:0;margin:24px 0 0;display:flex;flex-direction:column;gap:10px}
+.course-list li{display:flex;align-items:center;gap:9px;color:#ddd;font-size:14px}
+.course-list li svg{width:17px;height:17px;color:var(--green);flex-shrink:0}
+
+.course-price{display:flex;align-items:baseline;gap:16px;margin:28px 0 24px}
+.price-old{color:#888;font-size:14px;text-decoration:line-through}
+.price-now{font:800 46px 'Barlow Condensed',sans-serif;color:#fff}
+.price-now small{font-size:20px;color:var(--green);font-weight:800;margin-right:2px}
+
+.course-visual{position:relative;min-height:340px}
+.course-visual img{width:100%;height:100%;object-fit:cover;object-position:70% center;position:absolute;inset:0}
+.course-tag{position:absolute;right:20px;bottom:20px;background:#0d0d0dee;border:1px solid var(--line);
+  padding:12px 16px;display:flex;flex-direction:column;gap:2px;border-radius:6px}
+.course-tag span{color:var(--green);font-size:10px;font-weight:800;letter-spacing:1.2px}
+.course-tag b{font:800 15px 'Barlow Condensed',sans-serif;letter-spacing:.3px}
 
 /* 9) YOUTUBE -------------------------------------------------------------- */
 .youtube{padding:100px var(--pad-x);background:#101010;border-top:1px solid var(--line)}
@@ -233,17 +318,29 @@ footer{padding:32px 6vw;display:flex;justify-content:space-between;align-items:c
   .topbar>.button{display:none}
   .menu-button{display:block}
 
-  .hero{min-height:auto;padding:70px 8vw 70px;display:block}
-  .hero-visual{height:auto;margin-top:34px;max-width:300px}
-  .hero-visual p,.hero-number,.scroll-note{display:none}
+  .hero{min-height:100svh;padding:110px 8vw 60px}
+  .hero-bg img{object-position:62% center}
+  .hero-bg-overlay{background:
+    linear-gradient(180deg,rgba(10,10,10,.55) 0%,rgba(10,10,10,.55) 40%,var(--ink) 92%),
+    linear-gradient(0deg,var(--ink) 0%,transparent 22%)}
+  .hero-content{max-width:100%}
+  .hero-stats{gap:18px 26px}
+
+  .stats-strip{padding:30px 8vw}
+  .stats-strip-grid{grid-template-columns:1fr 1fr;gap:24px 16px}
 
   .intro{display:block;padding:70px 8vw}
   .intro-headline{margin-top:22px}
   .intro-copy{margin-top:26px}
+  .intro-tags{margin-top:22px}
   .intro-video{margin-top:30px;max-width:none;justify-self:stretch}
   .intro-video .instagram-media{max-width:100%!important}
 
-  .training,.schedule,.youtube{padding:70px 8vw}
+  .audience,.training,.schedule,.youtube,.benefits,.reviews{padding:70px 8vw}
+  .reviews{display:block}
+  .reviews-card{margin-top:24px;margin-bottom:32px;max-width:none}
+  .reviews-grid{grid-template-columns:1fr}
+  .audience-grid{grid-template-columns:1fr}
   .training-heading{text-align:left}
   .cards{grid-template-columns:1fr}
   .card{min-height:220px}
@@ -251,11 +348,18 @@ footer{padding:32px 6vw;display:flex;justify-content:space-between;align-items:c
   .laysson{display:block;padding:70px 8vw}
   .laysson-identity,.laysson-copy,.laysson-video{margin-bottom:34px}
   .laysson-video{max-width:420px}
+  .laysson-badge{right:12px;bottom:16px;transform:none;padding:10px 12px}
+  .laysson-badge b{font-size:22px}
+  .check-list{grid-template-columns:1fr}
+
+  .benefits-grid{grid-template-columns:1fr}
 
   .schedule-grid{grid-template-columns:1fr;gap:0}
 
-  .course{display:block;padding:70px 8vw}
-  .course-copy{margin-top:26px;max-width:none;justify-self:stretch}
+  .course{padding:70px 8vw}
+  .course-card{display:block;border-radius:12px}
+  .course-info{padding:32px}
+  .course-visual{min-height:260px}
 
   .youtube-grid{gap:18px}
 

@@ -1,6 +1,5 @@
-/* Canhoto Fight — script mínimo: menu mobile + embed do Instagram */
+/* Canhoto Fight — menu mobile */
 
-// --- Menu mobile ---------------------------------------------------------
 const menuButton = document.querySelector('.menu-button');
 const nav = document.querySelector('.nav');
 
@@ -18,12 +17,3 @@ document.querySelectorAll('.nav a').forEach((link) =>
     if (menuButton) menuButton.textContent = '☰';
   })
 );
-
-// --- Embeds do Instagram (reels da academia e do Laysson) ----------------
-if (document.querySelector('.instagram-media')) {
-  const ig = document.createElement('script');
-  ig.async = true;
-  ig.src = 'https://www.instagram.com/embed.js';
-  ig.onload = () => window.instgrm?.Embeds.process();
-  document.body.appendChild(ig);
-}
