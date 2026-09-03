@@ -1,2 +1,9 @@
 _backup/
 .claude/
+
+# arquivos avulsos que não são do site (nunca devem ir para o repositório)
+imagens/*.exe
+imagens/*.msi
+imagens/client_secret_*.json
+imagens/App scope questionnaire.html
+imagens/App scope questionnaire_files/
